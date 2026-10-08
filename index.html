@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Re-WIRE | Soja e resiliência climática</title>
+<meta name="description" content="Re-WIRE Fase 2: risco climático da soja, economia das intervenções em resiliência e poder de mitigação de danos. Versão de teste.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#006574">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#006574; --teal-deep:#003B44; --teal-bright:#13A89E; --teal-light:#46BCB7;
+  --leaf:#80A02B; --yellow:#DCC804;
+  --bg:#FFFFFF; --surface:#F2F6F6; --ink:#1F2A2C; --body:#595959; --rule:#D9E3E4;
+  --bar:#006574; --bar-ink:#FFFFFF;
+  --font:Calibri, Carlito, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1F22; --surface:#15292D; --ink:#E8F0F0; --body:#B7C6C8; --rule:#24403F;
+    --bar:#003B44; --teal:#46BCB7;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1F22; --surface:#15292D; --ink:#E8F0F0; --body:#B7C6C8; --rule:#24403F;
+  --bar:#003B44; --teal:#46BCB7;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--font);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* Barra superior: eco da barra teal dos slides FOLU */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bar);color:var(--bar-ink)}
+.bar-in{max-width:1200px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:24px}
+.bar-logo{display:flex;align-items:center;text-decoration:none}
+.bar-logo img{height:30px;width:auto;display:block}
+.bar nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.bar nav a{color:#fff;text-decoration:none;font-size:15px;padding:6px 12px;border-radius:2px;opacity:.82}
+.bar nav a:hover{opacity:1;background:rgba(255,255,255,.1)}
+.bar nav a[aria-current="page"]{opacity:1;box-shadow:inset 0 -3px 0 var(--yellow)}
+.project-tag{font-size:14px;opacity:.85;border-left:1px solid rgba(255,255,255,.35);padding-left:16px}
+
+/* Home */
+.hero{position:relative;min-height:62vh;display:flex;align-items:flex-end;color:#fff;
+  background:linear-gradient(180deg,rgba(0,59,68,.25) 0%,rgba(0,59,68,.55) 45%,rgba(0,59,68,.92) 100%),url("assets/img/hero-campo.jpg") center 40%/cover no-repeat}
+.hero-in{max-width:1200px;width:100%;margin:0 auto;padding:64px 24px 56px}
+.hero h1{font-size:clamp(40px,6.4vw,84px);line-height:.98;font-weight:700;margin:0 0 20px;letter-spacing:-.015em;max-width:17ch;color:#fff}
+.hero p{font-size:clamp(18px,1.6vw,21px);max-width:58ch;margin:0;color:rgba(255,255,255,.92)}
+.crops{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.crops span{font-size:15px;padding:4px 12px;border:1px solid rgba(255,255,255,.55);border-radius:20px}
+.crops span.on{background:var(--yellow);border-color:var(--yellow);color:#1F2A2C;font-weight:700}
+
+.paths{max-width:1200px;margin:0 auto;padding:56px 24px 72px}
+.paths-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.paths-head h2{font-size:28px;color:var(--ink);margin:0;font-weight:700}
+.paths-head p{margin:0;max-width:52ch}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:4px solid var(--teal)}
+.path{position:relative;display:flex;flex-direction:column;text-decoration:none;color:var(--body);padding:28px 28px 32px;border-right:1px solid var(--rule);background:var(--bg);transition:background .2s}
+.path:last-child{border-right:0}
+.path:hover{background:var(--surface)}
+.path .step{font-size:64px;line-height:1;font-weight:700;color:var(--c);margin-bottom:18px}
+.path h3{font-size:24px;line-height:1.15;color:var(--ink);margin:0 0 10px}
+.path p{margin:0 0 22px;font-size:16px}
+.path .go{margin-top:auto;font-weight:700;color:var(--teal);display:inline-flex;gap:8px;align-items:center}
+.path .go svg{transition:transform .2s}
+.path:hover .go svg{transform:translateX(4px)}
+.path::before{content:"";position:absolute;left:0;right:0;top:-4px;height:4px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.path:hover::before,.path:focus-visible::before{transform:scaleX(1)}
+.flow-note{margin-top:20px;font-size:15px}
+
+/* Páginas de análise */
+.page-head{background:var(--surface);border-bottom:1px solid var(--rule)}
+.page-head-in{max-width:1200px;margin:0 auto;padding:40px 24px 32px;display:grid;grid-template-columns:auto 1fr;gap:8px 24px;align-items:start}
+.page-head .step{grid-row:span 2;font-size:88px;line-height:.85;font-weight:700;color:var(--c)}
+.page-head h1{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.05;color:var(--ink)}
+.page-head p{margin:0;max-width:64ch}
+.page-body{max-width:1200px;margin:0 auto;padding:40px 24px 64px}
+.slots{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.slot{grid-column:span 3;min-height:260px;border:1.5px dashed var(--rule);border-radius:4px;padding:20px;display:flex;flex-direction:column}
+.slot.wide{grid-column:span 6;min-height:320px}
+.slot.third{grid-column:span 2}
+.slot h2{font-size:19px;margin:0 0 6px;color:var(--ink)}
+.slot p{margin:0;font-size:15px}
+.slot .src{margin-top:auto;padding-top:16px;font-size:13.5px;color:var(--body)}
+.slot .src b{color:var(--teal);font-weight:700}
+.status{display:inline-block;font-size:13px;color:var(--c);border:1px solid var(--c);border-radius:20px;padding:1px 10px;margin-bottom:12px;align-self:flex-start}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:40px;padding-top:24px;border-top:1px solid var(--rule)}
+.pager a{text-decoration:none;color:var(--teal);font-weight:700}
+.pager a span{display:block;font-weight:400;color:var(--body);font-size:14px}
+
+footer{border-top:1px solid var(--rule)}
+.foot-in{max-width:1200px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px}
+.foot-in img{height:22px;width:auto}
+
+[hidden]{display:none!important}
+.view{animation:in .35s ease-out}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}.path::before,.path .go svg{transition:none}}
+
+@media (max-width:860px){
+  .path-grid{grid-template-columns:1fr}
+  .path{border-right:0;border-bottom:1px solid var(--rule)}
+  .slot,.slot.third{grid-column:span 6}
+  .project-tag{display:none}
+  .bar-in{flex-wrap:wrap;gap:8px}
+  .bar nav{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  .bar nav a{white-space:nowrap}
+  .page-head .step{font-size:56px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="bar-logo" href="#/" aria-label="Início"><img src="assets/img/logo-folu-branco.svg" alt="Food and Land Use Coalition"></a>
+    <span class="project-tag">Re-WIRE Fase 2</span>
+    <nav aria-label="Análises">
+      <a href="#/" data-route="">Início</a>
+      <a href="#/soja" data-route="soja">Soja e dados</a>
+      <a href="#/economia" data-route="economia">Economia das intervenções</a>
+      <a href="#/mitigacao" data-route="mitigacao">Mitigação de danos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <div class="hero-in">
+        <h1>Soja, risco climático e o retorno da resiliência</h1>
+        <p>Modelo Re-WIRE de perdas de produção e retorno de investimentos em resiliência. Três leituras do mesmo modelo: a exposição da soja ao clima, a economia das intervenções na fazenda e o quanto delas reduz as perdas.</p>
+        <div class="crops" aria-label="Oleaginosas no escopo do projeto">
+          <span class="on">Soja</span><span>Palma</span><span>Canola</span><span>Girassol</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="paths">
+      <div class="paths-head">
+        <h2>Escolha uma análise</h2>
+        <p>As páginas seguem a lógica do argumento para o CFO: primeiro o risco, depois o custo de agir, por fim o dano evitado.</p>
+      </div>
+      <div class="path-grid">
+        <a class="path" href="#/soja" style="--c:var(--leaf)">
+          <span class="step" aria-hidden="true">1</span>
+          <h3>Soja e seus dados</h3>
+          <p>Produção, produtividade e preços de referência, e a perda de produtividade projetada pelo clima por cenário e percentil.</p>
+          <span class="go">Abrir análise <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M0 6h16M11 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        </a>
+        <a class="path" href="#/economia" style="--c:var(--teal-bright)">
+          <span class="step" aria-hidden="true">2</span>
+          <h3>Economia das intervenções em resiliência</h3>
+          <p>Fluxo de caixa da transição numa fazenda de referência em Mato Grosso: VPL, TIR e payback em 5, 10 e 15 anos.</p>
+          <span class="go">Abrir análise <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M0 6h16M11 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        </a>
+        <a class="path" href="#/mitigacao" style="--c:var(--yellow)">
+          <span class="step" aria-hidden="true">3</span>
+          <h3>Poder de mitigação de danos</h3>
+          <p>Quanto da perda climática cada intervenção evita, e o que isso significa em toneladas e dólares por região e por empresa.</p>
+          <span class="go">Abrir análise <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true"><path d="M0 6h16M11 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÁGINA 1 -->
+  <section id="view-soja" class="view" hidden style="--c:var(--leaf)">
+    <div class="page-head"><div class="page-head-in">
+      <span class="step" aria-hidden="true">1</span>
+      <h1>Soja e seus dados</h1>
+      <p>Linha de base da soja e exposição ao risco climático. Comparação entre o cenário sem efeito climático, o cenário sem ação e o cenário com adaptação.</p>
+    </div></div>
+    <div class="page-body">
+      <div class="slots">
+        <div class="slot third"><span class="status">A construir</span><h2>Indicadores de referência</h2><p>Produtividade global de referência, área plantada e divisão farelo e óleo.</p><div class="src">Fonte no modelo: <b>Soy Production</b></div></div>
+        <div class="slot third"><span class="status">A construir</span><h2>Preços de referência</h2><p>Trajetória de preços por cenário de formação de preço.</p><div class="src">Fonte no modelo: <b>Price Assumptions</b></div></div>
+        <div class="slot third"><span class="status">A construir</span><h2>Brasil e Estados Unidos</h2><p>Série histórica de produção e produtividade.</p><div class="src">Fonte no modelo: <b>FAOSTAT Soy Brazil US</b></div></div>
+        <div class="slot wide"><span class="status">A construir</span><h2>Perda de produtividade por clima, 2025 a 2050</h2><p>Curvas por percentil, com seletor de cenário e país.</p><div class="src">Fonte no modelo: <b>Global Soy Yield Loss</b>, <b>Yield Impacts Distr. Time</b>, <b>OECD-FAO Yield Proj.</b></div></div>
+      </div>
+      <nav class="pager" aria-label="Navegação entre análises">
+        <a href="#/"><span>Voltar</span>Início</a>
+        <a href="#/economia" style="text-align:right"><span>Próxima</span>Economia das intervenções</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- PÁGINA 2 -->
+  <section id="view-economia" class="view" hidden style="--c:var(--teal-bright)">
+    <div class="page-head"><div class="page-head-in">
+      <span class="step" aria-hidden="true">2</span>
+      <h1>Economia das intervenções em resiliência</h1>
+      <p>Arquétipo de produtor: fazenda de soja e milho em Mato Grosso. Custos de transição, ganhos líquidos e retorno em termos reais e nominais.</p>
+    </div></div>
+    <div class="page-body">
+      <div class="slots">
+        <div class="slot third"><span class="status">A construir</span><h2>VPL por horizonte</h2><p>Valor presente líquido em 5, 10 e 15 anos, em USD por hectare.</p><div class="src">Fonte no modelo: <b>Farm Economics</b>, <b>Results Consolidation</b></div></div>
+        <div class="slot third"><span class="status">A construir</span><h2>TIR e payback</h2><p>Taxa interna de retorno real e nominal, e anos até o retorno.</p><div class="src">Fonte no modelo: <b>Results Consolidation</b></div></div>
+        <div class="slot third"><span class="status">A construir</span><h2>Premissas de investimento</h2><p>Capex e opex por intervenção, taxa de desconto e inflação.</p><div class="src">Fonte no modelo: <b>Invest. Assumptions</b>, <b>Scenario Setting</b></div></div>
+        <div class="slot wide"><span class="status">A construir</span><h2>Fluxo de caixa da transição</h2><p>Ganhos líquidos anuais e acumulados, com seletor de percentil e cenário de preço.</p><div class="src">Fonte no modelo: <b>Farm Economics</b>, <b>Soy Production cost - MT</b>, <b>Maize Production cost - MT</b></div></div>
+      </div>
+      <nav class="pager" aria-label="Navegação entre análises">
+        <a href="#/soja"><span>Anterior</span>Soja e dados</a>
+        <a href="#/mitigacao" style="text-align:right"><span>Próxima</span>Mitigação de danos</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- PÁGINA 3 -->
+  <section id="view-mitigacao" class="view" hidden style="--c:#A89A00">
+    <div class="page-head"><div class="page-head-in">
+      <span class="step" aria-hidden="true" style="color:var(--yellow)">3</span>
+      <h1>Poder de mitigação de danos</h1>
+      <p>Resultado de adaptação de cada intervenção e as perdas evitadas que ele gera, do nível da fazenda ao nível da cadeia de suprimento.</p>
+    </div></div>
+    <div class="page-body">
+      <div class="slots">
+        <div class="slot"><span class="status">A construir</span><h2>Mitigação por intervenção</h2><p>Ranking das intervenções por resultado de adaptação: plantas de cobertura, plantio direto, nutrição, irrigação, controle biológico.</p><div class="src">Fonte no modelo: <b>Interventions Mitigation</b>, <b>CRP 2030 per Intervention</b></div></div>
+        <div class="slot"><span class="status">A construir</span><h2>Perda com e sem adaptação</h2><p>Comparação da perda de produtividade no cenário sem ação e no cenário com adaptação.</p><div class="src">Fonte no modelo: <b>CRP Yield Loss Mitigation</b>, <b>CRP Yield Loss Baseline Adj.</b></div></div>
+        <div class="slot"><span class="status">A construir</span><h2>Perdas evitadas por região</h2><p>Toneladas e USD evitados por região produtora.</p><div class="src">Fonte no modelo: <b>AL - Regional Level</b></div></div>
+        <div class="slot"><span class="status">A construir</span><h2>Perdas evitadas por empresa</h2><p>Exposição e dano evitado na cadeia de suprimento de uma empresa compradora.</p><div class="src">Fonte no modelo: <b>AL - Company Level</b></div></div>
+      </div>
+      <nav class="pager" aria-label="Navegação entre análises">
+        <a href="#/economia"><span>Anterior</span>Economia das intervenções</a>
+        <a href="#/" style="text-align:right"><span>Voltar</span>Início</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <span>Re-WIRE Fase 2. Systemiq e Food and Land Use Coalition. Versão de trabalho, outubro de 2026.</span>
+    <span>Modelo: ReWIRE Production Loss and Resilience ROI, 7 out. 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var routes={"":"view-home","soja":"view-soja","economia":"view-economia","mitigacao":"view-mitigacao"};
+  var titles={"":"Re-WIRE | Soja e resiliência climática","soja":"Soja e seus dados | Re-WIRE","economia":"Economia das intervenções | Re-WIRE","mitigacao":"Poder de mitigação | Re-WIRE"};
+  function render(){
+    var key=(location.hash||"").replace(/^#\/?/,"");
+    if(!(key in routes)) key="";
+    Object.keys(routes).forEach(function(k){
+      var el=document.getElementById(routes[k]); if(el) el.hidden=(k!==key);
+    });
+    document.querySelectorAll(".bar nav a").forEach(function(a){
+      if(a.getAttribute("data-route")===key) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    document.title=titles[key];
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",render);
+  render();
+})();
+</script>
+</body>
+</html>
